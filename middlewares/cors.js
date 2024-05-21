@@ -13,4 +13,3 @@ const allowedCors = [
     'https://students-projects.ru',
     'http://localhost:3000'
   ]; 
-
