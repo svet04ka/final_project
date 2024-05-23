@@ -1,8 +1,12 @@
+// Создаём роут для запросов категорий 
 const categoriesRouter = require('express').Router();
 
-  const findAllCategories = require('../middlewares/categories');
-  const sendAllCategories = require('../controllers/categories');
+// Импортируем вспомогательные функции
+const findAllCategories = require('../middlewares/categories');
+const sendAllCategories = require('../controllers/categories');
 
-  categoriesRouter.get('/categories', findAllCategories, sendAllCategories);
+// Обрабатываем GET-запрос с роутом '/categories'
+categoriesRouter.get('/categories', findAllCategories, sendAllCategories);
 
-  module.exports = categoriesRouter;
+// Экспортируем роут для использования в приложении — app.js
+module.exports = categoriesRouter;

@@ -1,8 +1,12 @@
-const usersRouter = require("express")
+// Создаём роут для запросов категорий 
+const categoriesRouter = require('express').Router();
 
-const findAllUsers = require('../middlewares/users');
-const sendAllUsers = require('../controllers/users');
-  
-usersRouter.get('/users', findAllUsers, sendAllUsers);
+// Импортируем вспомогательные функции
+const findAllCategories = require('../middlewares/categories');
+const sendAllCategories = require('../controllers/categories');
 
-module.exports = usersRouter;
+// Обрабатываем GET-запрос с роутом '/categories'
+categoriesRouter.get('/categories', findAllCategories, sendAllCategories);
+
+// Экспортируем роут для использования в приложении — app.js
+module.exports = categoriesRouter;

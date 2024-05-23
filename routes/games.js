@@ -1,5 +1,8 @@
-const gamesRouter = require("express")
+const gamesRouter = require('express').Router();
 
-gamesRouter.get("/games", (req, res) => {})
+const findAllGames = require('../middlewares/games');
+const sendAllGames = require('../controllers/games');
 
-module.exports = gamesRouter
+gamesRouter.get('/games', findAllGames, sendAllGames);
+
+module.exports = gamesRouter; 
