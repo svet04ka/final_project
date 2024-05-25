@@ -9,7 +9,7 @@ res.end(JSON.stringify(req.categoriesArray));
 const sendCategoryCreated = (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(req.category));
-}; 
+};
 
 const sendCategoryById = (req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -23,7 +23,7 @@ const sendCategoryUpdated = (req, res) => {
 
 const sendCategoryDeleted = (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  res.status(200).send(JSON.stringify({ message: "Категория удалена" }));
+  res.end(JSON.stringify(req.category));
 };
 
 // Экспортируем контроллер

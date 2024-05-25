@@ -1,17 +1,26 @@
 const usersRouter = require('express').Router();
 
-const {findAllUsers, findUserById, createUser, updateUser, deleteUser} = require('../middlewares/users');
+const {findAllUsers, findUserById,checkIsUserExists,
+  checkEmptyNameAndEmailAndPassword, checkEmptyNameAndEmail, createUser, updateUser, deleteUser} = require('../middlewares/users');
 const {sendUserById,  sendUserCreated, sendUserUpdated, sendUserDeleted} = require('../controllers/users');
 
 usersRouter.get("/users/:id", findUserById, sendUserById);
 
-usersRouter.post("/users", findAllUsers, createUser, sendUserCreated);
+usersRouter.post(
+  "/users",
+  findAllUsers,
+  checkIsUserExists,
+  checkEmptyNameAndEmailAndPassword,
+  createUser,
+  sendUserCreated
+);
 
 usersRouter.put(
-    "/users/:id", // Слушаем запросы по эндпоинту
-    updateUser, // Обновляем запись в MongoDB
-    sendUserUpdated // Возвращаем ответ на клиент
-  ); 
+  "/users/:id",
+  checkEmptyNameAndEmail,
+  updateUser,
+  sendUserUpdated
+);
 
   usersRouter.delete("/users/:id", deleteUser, sendUserDeleted);
 
