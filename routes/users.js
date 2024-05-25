@@ -1,12 +1,18 @@
-// Создаём роут для запросов категорий 
-const categoriesRouter = require('express').Router();
+const usersRouter = require('express').Router();
 
-// Импортируем вспомогательные функции
-const findAllCategories = require('../middlewares/categories');
-const sendAllCategories = require('../controllers/categories');
+const {findAllUsers, findUserById, createUser, updateUser, deleteUser} = require('../middlewares/users');
+const {sendUserById,  sendUserCreated, sendUserUpdated, sendUserDeleted} = require('../controllers/users');
 
-// Обрабатываем GET-запрос с роутом '/categories'
-categoriesRouter.get('/categories', findAllCategories, sendAllCategories);
+usersRouter.get("/users/:id", findUserById, sendUserById);
 
-// Экспортируем роут для использования в приложении — app.js
-module.exports = categoriesRouter;
+usersRouter.post("/users", findAllUsers, createUser, sendUserCreated);
+
+usersRouter.put(
+    "/users/:id", // Слушаем запросы по эндпоинту
+    updateUser, // Обновляем запись в MongoDB
+    sendUserUpdated // Возвращаем ответ на клиент
+  ); 
+
+  usersRouter.delete("/users/:id", deleteUser, sendUserDeleted);
+
+module.exports = usersRouter;
