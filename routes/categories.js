@@ -4,7 +4,8 @@ const {findAllCategories, findCategoryById, createCategory, updateCategory, chec
 const {sendCategoryById, sendCategoryCreated, sendCategoryUpdated, sendCategoryDeleted, sendAllCategories} = require('../controllers/categories');
 const { checkAuth } = require("../middlewares/auth")
 
-categoriesRouter.get("/categories/:id", findAllCategories, findCategoryById, sendCategoryById, sendAllCategories);
+categoriesRouter.get("/categories/:id", findCategoryById, sendCategoryById);
+categoriesRouter.get("/categories", findAllCategories, sendAllCategories)
 
 categoriesRouter.post(
   "/categories",

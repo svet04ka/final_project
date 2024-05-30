@@ -8,7 +8,8 @@ const { sendUserById,  sendUserCreated, sendUserUpdated, sendUserDeleted,
   sendAllUsers} = require('../controllers/users');
 const { checkAuth } = require("../middlewares/auth")
 
-usersRouter.get("/users/:id", findAllUsers, findUserById, sendUserById, sendAllUsers);
+usersRouter.get("/users", findAllUsers, sendAllUsers)
+usersRouter.get("/users/:id", findUserById, sendUserById);
 usersRouter.get("/me", checkAuth, sendMe);
 
 usersRouter.post(
